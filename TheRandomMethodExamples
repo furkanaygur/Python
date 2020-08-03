@@ -1,0 +1,12 @@
+import random
+
+rand = random.randint(1, 100)
+print(rand)
+names = ["a", "b", "c", "d"]
+result = random.choice(names)
+print(result)
+l1st = list(range(10))
+print(l1st)
+random.shuffle(l1st)
+print(l1st)
+print(random.sample(l1st, 3))
