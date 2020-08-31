@@ -8,30 +8,32 @@ def EnterScore():
     with open("Infos.txt", "a", encoding="utf-8") as file:
         file.write(name + " " + surname + ":" + Score1 + "," + Score2 + "," + Score3 + "\n")
 
+#encapsulation
 def ReadScore():
+    def Average(line):
+        line = line[:-1]
+        list = line.split(':')
+        names = list[0]
+        scores = list[1].split(',')
+        score1 = int(scores[0])
+        score2 = int(scores[1])
+        score3 = int(scores[2])
+        average = (int(score1) + int(score2) + int(score3)) / 3
+        if average >= 90:
+            letter = 'AA'
+        elif (average >= 85 and average <= 89):
+            letter = 'BB'
+        elif (average >= 65 and average <= 84):
+            letter = 'CC'
+        else:
+            letter = 'FF'
+
+        return names + ": " + letter + "\n"
+
     with open("Infos.txt", "r", encoding="utf-8") as file:
         for line in file:
             print(Average(line))
 
-def Average(line):
-    line = line[:-1]
-    list = line.split(':')
-    names = list[0]
-    scores = list[1].split(',')
-    score1 = int(scores[0])
-    score2 = int(scores[1])
-    score3 = int(scores[2])
-    average = (int(score1) + int(score2) + int(score3)) / 3
-    if average >= 90:
-        letter = 'AA'
-    elif (average >= 85 and average <= 89):
-        letter = 'BB'
-    elif (average >= 65 and average <= 84):
-        letter = 'CC'
-    else:
-        letter = 'FF'
-
-    return names + ": " + letter + "\n"
 
 
 
