@@ -1,0 +1,17 @@
+def check_password(psw):
+    import re
+    if len(psw) < 7:
+        raise Exception("Min 8 character")
+    elif not re.search("[a-z]", psw):
+        raise Exception("Password must contain a-z")
+    elif not re.search("[A-Z]", psw):
+        raise Exception("Password must contain A-Z")
+
+
+password = input("Password:")
+try:
+    check_password(password)
+except Exception as ex:
+    print(ex)
+finally:
+    print("End")
