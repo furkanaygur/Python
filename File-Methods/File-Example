@@ -1,0 +1,43 @@
+# *************** First way ******************
+
+try:
+    file = open("newfile.txt", "r")
+    for i in file:
+        print(i, end="\n")
+    file.seek(0)  # Cursor go to start
+    print(file.read())
+except FileNotFoundError:
+    print("File not found")
+finally:
+    file.close()
+
+# **************** Second way ******************
+
+with open("newfile.txt", "a") as file:
+    file.write("\nAygur")
+
+with open("newfile.txt", "r+", encoding="utf-8") as file:
+    print(file.read(), end="\n")
+
+# ******************* Top of the page ******************
+
+with open("newfile.txt", "r+", encoding="utf-8") as file:
+    content = file.read()
+    content = "1." + content
+    file.seek(0)
+    file.write(content)
+
+with open("newfile.txt", "r", encoding="utf-8") as file:
+    print(file.read())
+
+# ******************* Middle of the page ******************
+
+with open("newfile.txt", "r+", encoding="utf-8") as file:
+    list = file.readlines()
+    list.insert(1, "Firat University \n")
+    file.seek(0)
+    # for i in list:
+    #     file.write(i)
+    file.writelines(list) # same thing with up to for
+with open("newfile.txt", "r", encoding="utf-8") as file:
+    print(file.read())
