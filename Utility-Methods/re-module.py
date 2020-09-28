@@ -5,26 +5,26 @@ str = "Furkan Aygur 22 Istanbul"
 # re module
 
 
-#
-# result = re.findall("Furkan", str)
-# print(result)
-#
-# resultlen = len(result)
-# print(resultlen)
-#
-# result = re.split(" ", str)
-# print(result)
-#
-# result = re.sub("\s", "-", str)
-# print(result)
-#
-# result = re.search("Furkan", str)
-# # result = result.span()
-# # result = result.start()
-# # result = result.end()
-# # result = result.group()
-# result = result.string
-# print(result)
+
+result = re.findall("Furkan", str)
+print(result)
+
+resultlen = len(result)
+print(resultlen)
+
+result = re.split(" ", str)
+print(result)
+
+result = re.sub("\s", "-", str)
+print(result)
+
+result = re.search("Furkan", str)
+# result = result.span()
+# result = result.start()
+# result = result.end()
+# result = result.group()
+result = result.string
+print(result)
 
 # *********************************************
 # regular expression
