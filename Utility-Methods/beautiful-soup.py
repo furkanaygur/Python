@@ -1,6 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
+# if you dont have a BeautifulSoup packages, you have to install
+# pip install beautifulsoup4
+
 site_url = "https://furkanaygur.netlify.app"
 response = requests.get(site_url)
 content = response.content
