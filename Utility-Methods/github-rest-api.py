@@ -35,7 +35,5 @@ while True:
             for repo in result:
                 print(repo["name"])
 
-        elif choice == "3":
-            pass
         else:
             print("You can input only 1-2-3")
