@@ -3,7 +3,7 @@
 from selenium import webdriver
 import time
 
-driver = webdriver.Chrome('C:/Users/furka/Desktop/Python-Ornekleri/Selenium/chromedriver.exe')
+driver = webdriver.Chrome()
 
 url = "https://furkanaygur.netlify.app"
 driver.get(url)
