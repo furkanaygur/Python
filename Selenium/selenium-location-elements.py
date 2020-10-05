@@ -22,5 +22,4 @@ result = driver.find_elements_by_css_selector(".repo-list-item div a")
 for element in result:
     print(element.text)
 
-time.sleep(1)
 driver.close()
