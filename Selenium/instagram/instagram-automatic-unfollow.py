@@ -47,4 +47,4 @@ instagram.unfollowUser(usernameF)
 
 # userList = ['a','b']
 # for user in userList:
-#     instagram.followUser(user)
+#     instagram.unfollowUser(user)
