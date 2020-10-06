@@ -50,9 +50,17 @@ class Instagram:
 
         followers = dialog.find_elements_by_css_selector("li")
 
+        followerList = []
         for user in followers:
             link = user.find_element_by_css_selector("a").get_attribute("href")
+            followerList.append(link)
             print(link)
+
+        # File
+        with open("followers.txt", "w", encoding="UTF-8") as file:
+            for item in followerList:
+                file.write(item + "\n")
+
 
 # ******************** Main **************************
 
