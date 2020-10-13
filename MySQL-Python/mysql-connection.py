@@ -101,10 +101,17 @@ def getProducts():
     # product = cursor.fetchone()
     # print(f"Name: {product[1]} Price: {product[2]}")
 
+    try:
+        result = cursor.fetchall()
+        for i in result:
+            print(f"Name: {i[1]} Price: {i[2]}")
+    except mysql.connector.Error as err:
+        print("Error", err)
+    finally:
+        connection.close()
+        print("Closed")
 
-    result = cursor.fetchall()
-    for i in result:
-        print(f"Name: {i[1]} Price: {i[2]}")
+      
 
 # ********************** Main ****************************
 
