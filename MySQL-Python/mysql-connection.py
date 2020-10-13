@@ -86,22 +86,42 @@ def insertProducts(List):
         connection.close()
         print("Database Connection Closed")
         
-     
+def getProducts():
+    connection = mysql.connector.connect(
+        host = "localhost",
+        user = "root",
+        password = "",
+        database = "mydatabase" 
+    )
+
+    cursor = connection.cursor()
+
+    cursor.execute("Select * From products Where Price > 500 and name LIKE '%iphone%' ")
+
+    # product = cursor.fetchone()
+    # print(f"Name: {product[1]} Price: {product[2]}")
+
+
+    result = cursor.fetchall()
+    for i in result:
+        print(f"Name: {i[1]} Price: {i[2]}")
 
 # ********************** Main ****************************
 
 # insertProduct()
 
-List = []
-while True:
-    name = input("Name: ")
-    price = float(input("Price: "))
-    image = input("Image: ")
-    description = input("Description: ")
+# List = []
+# while True:
+#     name = input("Name: ")
+#     price = float(input("Price: "))
+#     image = input("Image: ")
+#     description = input("Description: ")
 
-    List.append((name, price, image, description))
-    result = input("Do you wanna continue? (y/n): ")
-    if result == 'n':
-        print(List)
-        insertProducts(List)
-        break
+#     List.append((name, price, image, description))
+#     result = input("Do you wanna continue? (y/n): ")
+#     if result == 'n':
+#         print(List)
+#         insertProducts(List)
+#         break
+
+getProducts()
