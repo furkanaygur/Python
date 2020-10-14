@@ -99,7 +99,7 @@ def getProducts():
 
     getProductsInfo()
     
-    cursor.execute("Select * From products Where Price > 500 and name LIKE '%iphone%' ")
+    cursor.execute("Select * From products Where Price > 200 and name LIKE '%iphone%' ")
 
     try:
         result = cursor.fetchall()
@@ -129,6 +129,29 @@ def getProductsInfo():
     product_count = cursor.fetchone()
     print(f"Result: {product_count[0]}")
 
+def updateProduct(id, name, price):
+    connection = mysql.connector.connect(
+        host = "localhost",
+        user = "root",
+        password = "",
+        database = "mydatabase" 
+    )
+
+    cursor = connection.cursor()
+
+    sql = "update products set Name=%s, Price=%s where ID=%s"
+    values = (name,price,id)
+
+    cursor.execute(sql, values)
+
+    try:
+        connection.commit()
+        print(f"{ cursor.rowcount } uploaded")
+    except mysql.connector.Error as err:
+        print("Error",err)
+    finally:
+        connection.close()
+
 
 # ********************** Main ****************************
 
@@ -147,5 +170,12 @@ def getProductsInfo():
 #         print(List)
 #         insertProducts(List)
 #         break
+
+
+
+id = float(input("ID: "))
+name = input("Update Name: ")
+price = float(input("Update Price: "))
+updateProduct(id , name, price)
 
 getProducts()
