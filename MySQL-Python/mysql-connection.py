@@ -76,6 +76,7 @@ def insertProducts(List):
     values = List
     cursor.executemany(insert_sql,values)
 
+    
     try:
         connection.commit()
         print(f"{ cursor.rowcount } Added")
@@ -96,10 +97,9 @@ def getProducts():
 
     cursor = connection.cursor()
 
+    getProductsInfo()
+    
     cursor.execute("Select * From products Where Price > 500 and name LIKE '%iphone%' ")
-
-    # product = cursor.fetchone()
-    # print(f"Name: {product[1]} Price: {product[2]}")
 
     try:
         result = cursor.fetchall()
@@ -111,7 +111,24 @@ def getProducts():
         connection.close()
         print("Closed")
 
-      
+def getProductsInfo():
+    connection = mysql.connector.connect(
+        host = "localhost",
+        user = "root",
+        password = "",
+        database = "mydatabase" 
+    )
+
+    cursor = connection.cursor()
+
+    # cursor.execute("Select COUNT(*) from products")
+    # cursor.execute("Select AVG(Price) from products")
+    # cursor.execute("Select SUM(Price) from products")
+    cursor.execute("Select Name from products where Price = (Select MAX(Price) from products)")
+ 
+    product_count = cursor.fetchone()
+    print(f"Result: {product_count[0]}")
+
 
 # ********************** Main ****************************
 
