@@ -5,7 +5,7 @@ import mysql.connector
 # connection = mysql.connector.connect(
 #     host = "localhost",
 #     user = "root",
-#     password = "",
+#     password = "admin",
 #     database = "mydatabase" 
 # )
 
@@ -36,7 +36,7 @@ import mysql.connector
 #         connection = mysql.connector.connect(
 #             host = "localhost",
 #             user = "root",
-#             password = "",
+#             password = "admin",
 #             database = "mydatabase" 
 #         )
 
@@ -66,7 +66,7 @@ def insertProducts(List):
     connection = mysql.connector.connect(
         host = "localhost",
         user = "root",
-        password = "",
+        password = "admin",
         database = "mydatabase" 
     )
 
@@ -91,7 +91,7 @@ def getProducts():
     connection = mysql.connector.connect(
         host = "localhost",
         user = "root",
-        password = "",
+        password = "admin",
         database = "mydatabase" 
     )
 
@@ -115,7 +115,7 @@ def getProductsInfo():
     connection = mysql.connector.connect(
         host = "localhost",
         user = "root",
-        password = "",
+        password = "admin",
         database = "mydatabase" 
     )
 
@@ -133,7 +133,7 @@ def updateProduct(id, name, price):
     connection = mysql.connector.connect(
         host = "localhost",
         user = "root",
-        password = "",
+        password = "admin",
         database = "mydatabase" 
     )
 
@@ -147,6 +147,28 @@ def updateProduct(id, name, price):
     try:
         connection.commit()
         print(f"{ cursor.rowcount } uploaded")
+    except mysql.connector.Error as err:
+        print("Error",err)
+    finally:
+        connection.close()
+
+def deleteProduct(id):
+    connection = mysql.connector.connect(
+        host = "localhost",
+        user = "root",
+        password = "admin",
+        database = "mydatabase" 
+    )
+
+    cursor = connection.cursor()
+
+    sql = "delete from products where ID=%s"
+    value = (id,)
+    cursor.execute(sql, value)
+
+    try:
+        connection.commit()
+        print(f"{ cursor.rowcount } deleted")
     except mysql.connector.Error as err:
         print("Error",err)
     finally:
@@ -173,9 +195,12 @@ def updateProduct(id, name, price):
 
 
 
-id = float(input("ID: "))
-name = input("Update Name: ")
-price = float(input("Update Price: "))
-updateProduct(id , name, price)
+# id = float(input("ID: "))
+# name = input("Update Name: ")
+# price = float(input("Update Price: "))
+# updateProduct(id , name, price)
+
+id = float(input("Delete ID: "))
+deleteProduct(id)
 
 getProducts()
