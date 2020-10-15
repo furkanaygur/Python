@@ -75,6 +75,9 @@ class Student:
             print(f" { Student.cursor.rowcount } deleted")
         except mysql.connector.Error as err:
             print("Error",err)
+    
+    def closeDB(self):
+        Student.connection.close()
 
 # ******************* Main *************************
 
@@ -97,6 +100,7 @@ while True :
     print(" MENU ".center(50,'*'))
     choice = input("1- Show Students \n2- Insert Student \n3- Update Student \n4- Delete Student \n5- Exit \nYour Choice: ")
     if choice == '5':
+        student.closeDB()
         break
     elif choice == '1':
         student.display()
