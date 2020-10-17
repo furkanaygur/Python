@@ -7,9 +7,7 @@ from schooldb_connection import connection
 class Student:
     connection = connection
     cursor = connection.cursor()
-
-    def __init__(self):
-        print("deneme")
+    
 
     def display(self):
         sql = "select * from students"
