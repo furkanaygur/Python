@@ -99,12 +99,13 @@ def getProducts():
 
     getProductsInfo()
     
-    cursor.execute("Select * From products Where Price > 200 and name LIKE '%iphone%' ")
+    sql = "Select p.Name, p.Price, c.Name From products as p inner join categories as c on c.ID = p.Categoryid" 
+    cursor.execute(sql)
 
     try:
         result = cursor.fetchall()
         for i in result:
-            print(f"Name: {i[1]} Price: {i[2]}")
+            print(f"Name: {i[0]} \t Price: {i[1]} \t Category: {i[2]}")
     except mysql.connector.Error as err:
         print("Error", err)
     finally:
@@ -200,7 +201,7 @@ def deleteProduct(id):
 # price = float(input("Update Price: "))
 # updateProduct(id , name, price)
 
-id = float(input("Delete ID: "))
-deleteProduct(id)
+# id = float(input("Delete ID: "))
+# deleteProduct(id)
 
 getProducts()
