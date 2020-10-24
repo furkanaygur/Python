@@ -1,5 +1,18 @@
 {% extends 'layout.html'%}
-
+{% load static %}
 {% block content %}
-    <h1>detail</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{% static movie.get_image_url %}" alt="" class="card-img">
+        </div>
+        <div class="col-md-9">
+            <h1>{{ movie.name }}</h1>
+            <hr>
+            <p>{{ movie.description }}</p>
+            <hr>
+            <p class="card-text">
+                <small class="text-muted">{{ movie.created_date | timesince }}</small>
+            </p>
+        </div>
+    </div>
 {% endblock %}
